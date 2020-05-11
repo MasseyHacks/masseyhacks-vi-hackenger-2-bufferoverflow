@@ -24,7 +24,7 @@ def comm(conn, addr):
         if ''.join(buffer[:16]) == ''.join(buffer[16:32]):
             conn.sendall("AJD$!(#HD!B".encode('utf-8'))
         else:
-            conn.sendall("Incorrect! Reminder: The SHA256 hash of the password is {}".format(hashlib.sha256(''.join(buffer[16:32]).encode('utf-8')).hexdigest()).encode('utf-8'))
+            conn.sendall("Incorrect! Reminder: The SHA256 hash of the password is {}'. Please try again.".format(hashlib.sha256(''.join(buffer[16:32]).encode('utf-8')).hexdigest()).encode('utf-8'))
 
     except:
         conn.sendall(b'Error. Please try again')
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     connections = {}
 
-    HOST = '127.0.0.1'
+    HOST = '0.0.0.0'
     PORT = 1511
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
